@@ -70,6 +70,7 @@ async def on_message(message):
 
     if message.content.startswith(f'{tag}moji'):
         await message.channel.send(':stalinapple: !')
+        png_file = open()
         await message.channel.send(':demonapple:')
 
     # if message.content.startswith(f'{tag}ch-tag'):
