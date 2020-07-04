@@ -2,7 +2,7 @@ import discord
 import random
 import asyncio
 
-TOKEN = 'NzI4Njg1MjU0MjMxMTk1Njg4.' + 'G6ME0nh7XvI-QXWpu6oOuWyOikc'
+TOKEN = 'NzI4Njg1MjU0MjMxMTk1Njg4.Xv_f4g.e6SpfR83myZ1ZxVQ11OwJWrW2LA'
 
 client = discord.Client()
 
@@ -17,6 +17,9 @@ list_o_memes = [line.strip() for line in f]
 print(list_o_memes)
 f.close()
 
+global tag
+tag = '!'
+
 
 @client.event
 async def on_ready():
@@ -29,39 +32,55 @@ async def on_ready():
 @client.event
 async def on_message(message):
     # we do not want the bot to reply to itself
+    global tag
+
     if message.author == client.user:
         return
 
-    if message.content.startswith('!hello'):
+    if message.content.startswith(f'{tag}hello'):
         msg = 'Hello {0.author.mention}'.format(message)
         print(msg)
         await message.channel.send(msg)
 
-    if message.content.startswith('!goodbye'):
+    if message.content.startswith(f'{tag}goodbye'):
         msg = 'Goodbye {0.author.mention}'.format(message)
         print(msg)
         await message.channel.send(msg)
 
-    if message.content.startswith('!f'):
+    if message.content.startswith(f'{tag}f'):
         msg = f'**F U** {message.author.mention} \n {random.choice(l_database)}'
         print(msg)
         await message.channel.send(msg)
 
-    if message.content.startswith('!e'):
+    if message.content.startswith(f'{tag}e'):
         for i in range(5):
             await message.channel.send('e')
 
-    if message.content.startswith('!***E***'):
+    if message.content.startswith(f'{tag}***E***'):
         for i in range(5):
             await message.channel.send('***E E E E E***')
 
-    if message.content.startswith('!helpimdead') or message.content.startswith('!help im dead'):
+    if message.content.startswith(f'{tag}helpimdead') or message.content.startswith('!help im dead'):
         msg = 'Lol sucks to be {0.author.mention}'.format(message)
         print(msg)
         await message.channel.send(msg)
 
-    if message.content.startswith('!meme'):
+    if message.content.startswith(f'{tag}meme'):
         await message.channel.send(random.choice(list_o_memes))
+
+    if message.content.startswith(f'{tag}moji'):
+        await message.channel.send(':stalinapple: !')
+        await message.channel.send(':demonapple:')
+
+    # if message.content.startswith(f'{tag}ch-tag'):
+    #     # check perms (in dev)
+    #     message = message.content
+    #     print(message.content[len(tag) + 7:])
+    #     if len(message.content[len(tag) + 7:]) > 0:
+    #         # there is a given tag
+    #         tag = message.content[len(tag) + 7:]
+    #
+    #     message.channel.send(f'Command tag set to: {tag}')
 
 
 client.run(TOKEN)
