@@ -2,7 +2,7 @@ import discord
 import random
 import asyncio
 
-TOKEN = 'NzI4Njg1MjU0MjMxMTk1Njg4.Xv_f4g.e6SpfR83myZ1ZxVQ11OwJWrW2LA'
+TOKEN = 'NzI4Njg1MjU0MjMxMTk1Njg4.XwCiOw.0puJ-S_zHXvIPNFkE9UneceyTl8'
 
 client = discord.Client()
 
@@ -70,18 +70,18 @@ async def on_message(message):
 
     if message.content.startswith(f'{tag}moji'):
         await message.channel.send(':stalinapple: !')
-        png_file = open()
-        await message.channel.send(':demonapple:')
+        png_file = open('images/Michelle_shared_a_sketch_with_you.png', 'r')
+        await message.channel.send(png_file)
 
-    # if message.content.startswith(f'{tag}ch-tag'):
-    #     # check perms (in dev)
-    #     message = message.content
-    #     print(message.content[len(tag) + 7:])
-    #     if len(message.content[len(tag) + 7:]) > 0:
-    #         # there is a given tag
-    #         tag = message.content[len(tag) + 7:]
-    #
-    #     message.channel.send(f'Command tag set to: {tag}')
+    if message.content.startswith(f'{tag}ch-tag'):
+        # check perms (in dev)
+        m = message.content
+        print(message.content[len(tag) + 7:])
+        if len(message.content[len(tag) + 7:]) > 0:
+            # there is a given tag
+            tag = message.content[len(tag) + 7:]
+
+        await message.channel.send(f'Command tag set to: {tag}')
 
 
 client.run(TOKEN)
